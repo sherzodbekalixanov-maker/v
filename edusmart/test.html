@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="uz"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Test — EduSmart AI</title><link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><script>sessionStorage.flip&&(document.documentElement.className="fl")</script></head><body><main><section style="padding-top:14vh"><h1 id="tt">Mini-test</h1><p id="sc">Ball: 0</p><div class="card" id="q"></div></section></main><script src="data.js"></script><script src="app.js"></script><script>
+const d=localStorage.es_d||(me&&me.d)||'';
+if(!D[d])$('#q').innerHTML='<h3>Avval yo‘nalishingizni tanlang</h3><a class="btn" href="darsliklar.html">Yo‘nalish tanlash</a>';else{
+const Q=D[d].l.map(l=>{const p=l[3].split('|');return[p[0],p[1],p[2],l[1].split(/(?<=\.)\s/)[0]]});let i=0,s=0;
+$('#tt').textContent=D[d].n+': mini-test';
+function show(){const q=$('#q');if(i>=Q.length){q.innerHTML=`<h3>Tugadi: ${s}/${Q.length}</h3><p>${s<3?'Qiyin bo‘lsa, darslikdagi “Tushunmadim” tugmasini bosing. Ustoz AI yordam beradi.':'Ajoyib natija!'}</p><a class="btn" href="darsliklar.html">Darslikka qaytish</a>`;return}
+const x=Q[i];q.innerHTML=`<h3>${i+1}/${Q.length}. ${x[0]}</h3><input id="an"><button class="btn" id="ck">Tekshirish</button><button class="btn g" id="sk">O‘tkazish</button><p id="m"></p>`;
+$('#sk').onclick=()=>{i++;show()};
+$('#ck').onclick=()=>{if(x[1].split('/').some(a=>nm(a)==nm($('#an').value))){s++;$('#sc').textContent='Ball: '+s;$('#m').textContent='To‘g‘ri! '+x[3];$('#ck').disabled=1;setTimeout(()=>{i++;show()},1800)}else $('#m').textContent='Hali emas. Ishora: '+x[2]+' Yana urinib ko‘rasizmi?'}}
+show()}
+</script></body></html>

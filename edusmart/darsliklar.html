@@ -1,0 +1,18 @@
+<!DOCTYPE html><html lang="uz"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Darsliklar — EduSmart AI</title><link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><script>sessionStorage.flip&&(document.documentElement.className="fl")</script></head><body><main><section style="padding-top:12vh"><h1>Darsliklar</h1><p>Yo‘nalishingizni tanlang. Darslik shu yo‘nalish bo‘yicha ochiladi.</p><div id="ch" class="chips"></div><div id="bw"></div></section></main><script src="data.js"></script><script src="app.js"></script><script>
+const d=localStorage.es_d||(me&&me.d)||'';
+$('#ch').innerHTML=Object.keys(D).map(k=>`<button class="chip${k==d?' on2':''}" data-k="${k}">${D[k].n}</button>`).join('');
+document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{localStorage.es_d=b.dataset.k;location.reload()});
+if(D[d]){const X=D[d],L=X.l,pg=[['cv',`<h2>${X.n}<br>darsligi</h2><p>${L.length} ta dars. Sahifani varaqlang.</p>`],['',`<h3>Mundarija</h3>`+L.map((l,i)=>`<p><a href="#" class="jm" data-i="${i}">${i+1}. ${l[0]}</a></p>`).join('')]];
+L.forEach((l,i)=>{const q=l[3].split('|');pg.push(['',`<h3>${i+1}-dars: ${l[0]}</h3><p>${l[1]}</p><p><b>Misol:</b> ${l[2]}</p>`],['',`<h3>Mashq</h3><p>${q[0]}</p><input class="an" placeholder="Javobingiz"><button class="btn sm ck" data-i="${i}">Tekshirish</button><p class="fb"></p><button class="btn g sm sos" data-i="${i}">Tushunmadim</button>`])});
+pg.push(['',`<h3>Dars tugadi</h3><p>Bilimingizni mini-testda tekshiring.</p><a class="btn" href="test.html">Testni boshlash</a>`],['',`<h3>Savolingiz bormi?</h3><p>Ustoz AI istalgan mavzuni oddiy tilda tushuntiradi.</p><button class="btn" id="ai2">Ustoz AI ga yozish</button>`]);
+let h='';for(let k=0;k<pg.length;k+=2)h+=`<div class="lf"><div class="${pg[k][0]}">${pg[k][1]}</div><div class="b ${pg[k+1][0]}">${pg[k+1][1]}</div></div>`;
+$('#bw').innerHTML=`<div class="book">${h}</div><div class="bk"><button class="btn g" id="pv">Orqaga</button><button class="btn" id="nx">Keyingi sahifa</button></div>`;
+const V=[...document.querySelectorAll('.lf')];let k=0;V.forEach((l,i)=>l.style.zIndex=50-i);
+function go(x){if(x>0&&k<V.length){const l=V[k];l.style.zIndex=200;l.classList.add('t');setTimeout(()=>l.style.zIndex=10+V.indexOf(l),450);k++}else if(x<0&&k>0){k--;const l=V[k];l.style.zIndex=200;l.classList.remove('t');setTimeout(()=>l.style.zIndex=50-V.indexOf(l),450)}}
+function to(n){if(k==n)return;go(k<n?1:-1);setTimeout(()=>to(n),300)}
+$('#nx').onclick=()=>go(1);$('#pv').onclick=()=>go(-1);addEventListener('keydown',e=>{if(e.target.tagName!='INPUT'){if(e.key=='ArrowRight')go(1);if(e.key=='ArrowLeft')go(-1)}});
+document.querySelectorAll('.jm').forEach(a=>a.onclick=e=>{e.preventDefault();to(1+ +a.dataset.i)});
+document.querySelectorAll('.ck').forEach(b=>b.onclick=()=>{const l=L[b.dataset.i],q=l[3].split('|'),v=nm(b.parentNode.querySelector('.an').value),f=b.parentNode.querySelector('.fb');if(q[1].split('/').some(a=>nm(a)==v)){f.textContent='To‘g‘ri! '+l[1].split(/(?<=\.)\s/)[0];f.style.color='#7fb08a'}else{f.textContent='Hali emas. Ishora: '+q[2];f.style.color='#ff9b9b'}});
+document.querySelectorAll('.sos').forEach(b=>b.onclick=()=>aiOpen(d,+b.dataset.i));
+$('#ai2').onclick=()=>$('#aib').click()}
+</script></body></html>
